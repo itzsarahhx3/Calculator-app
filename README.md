@@ -1,6 +1,7 @@
 # Calculator App
 
-A calculator that supports positive, negative, decimal numbers, and parentheses.
+Four operations are supported by this calculator: addition, subtraction, multiplication, division.
+It also supports positive, negative, decimal numbers, and parentheses.
 
 <img src="./public/calculator.png" width="300">
 

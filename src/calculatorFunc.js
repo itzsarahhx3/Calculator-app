@@ -46,7 +46,7 @@ function calculator(str) {
     let array = str.split("");
     for (let i = 0; i < array.length; i++) {
         if (array[i] === "." && isNaN(array[i - 1])) {
-            array[i] = "0.";
+            array[i] = "0."; // reassign "." to be ".0"
         }
     }
     str = array.join("");
@@ -59,22 +59,33 @@ function calculator(str) {
 
         // check Edge Cases:
         if (
-            // if number or '-' associated with negative number
+            /* if number or '-' associated with negative number
+                1. if it is a number
+                2. char is a minus sign AND "-" at beginning 
+                    OR current char's previous num is an operator AND next char is a num
+                e.g. - at 0, ok
+                e.g. +-2, --2, ok
+            */
             !isNaN(char) ||
             (char === "-" &&
                 (i === 0 || (operators[str[i - 1]] && !isNaN(str[i + 1]))))
         ) {
-            // if previous char is a number:
+            // the previous char CANNOT be a number
+            // e.g. 2--5 -> ["2", "-"]
             if (!isNaN(arr[arr.length - 1])) return "Syntax Error";
             // include the whole num, not just the first digit
+            // e.g. 2--5 -> -5, slice at 2
+            // e.g. 2--0.5 -> -0.5, slice at 3
             let num = parseFloat(str.slice(i));
             arr.push(num);
-            // skip to the end of the num
+            // skip till the end of the num
             i += String(num).length - 1;
         } else if (brackets[char]) {
             arr.push(char);
         } else if (operators[char]) {
-            // if 2 or more operators in a row it is invalid (exception: '-' associated with neg number, already taken into account above)
+            // if 2 or more operators in a row it is invalid
+            // exception: minus sign with a negative num. already taken care in the if statement above
+            // e.g. 1++4 -> ["+", "+"] -> false
             if (operators[arr[arr.length - 1]]) return "Syntax Error";
             arr.push(char);
         } else {
@@ -82,7 +93,7 @@ function calculator(str) {
         }
     }
 
-    // if expression starts or ends with an operator it is invalid
+    // if input starts or ends with an operator it is invalid
     if (operators[arr[0]] || operators[arr[arr.length - 1]])
         return "Syntax Error";
 
