@@ -22,6 +22,9 @@ $ npm install
 
 ```sh
 $ npm start
+```
+Press a to run all tests
+```sh
 $ a
 ```
 
