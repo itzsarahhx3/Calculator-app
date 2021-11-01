@@ -4,7 +4,7 @@ A calculator that supports positive, negative, decimal numbers, and parentheses.
 
 
 ```sh
-$ git clone 
+$ git clone https://github.com/itzsarahhx3/calculator-app.git
 ```
 
 ```sh
