@@ -23,15 +23,15 @@ $ npm install
 ```sh
 $ npm start
 ```
-Press a to run all tests
-```sh
-$ a
-```
 
 ## Run Tests
 
 ```sh
 $ npm test
+```
+Press a to run all tests
+```sh
+$ a
 ```
 
 ## Documentation
